@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="~/Scripts/angular.min.js"></script>
+<script src="~/Scripts/Custom/app.module.js"></script>
+<script src="~/Scripts/Custom/schedulerequestservice.js"></script>
+<script src="~/Scripts/Custom/main.js"></script>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="panel-title">Request Schedule</div>
+    </div>
+    <div class="container">
+        <div class="row" ng-app="schedulerequestsapp" ng-controller="home">
+
+            <div class="col-md-6">
+                <div class="help-block"></div>
+                        <input type="text" name="urltoschedule" ng-model="formdata.urltoschedule" />
+                        <label for="daily">Daily</label>
+                        <input type="radio" ng-model="formdata.frequency" value="daily" />
+                        <label for="weekly">Weekly</label>
+                        <input type="radio" ng-model="formdata.frequency" value="weekly" />
+                        <input type="submit" value="Add" ng-click="formSubmit()" />
+                    
+                   
+                
+
+            </div>
+            <div class="col-md-6">
+                <table class="table-striped">
+                    <tr ng-repeat="scheduleitem in scheduledata">
+                        <td>{{scheduleitem.urltoschedule}}</td>
+                        <td class="text-right">{{scheduleitem.frequency}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

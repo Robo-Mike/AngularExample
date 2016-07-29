@@ -1,0 +1,38 @@
+
+"use strict"
+var myModule = ( function()
+{
+		var self = {};
+		self.funcs= [];
+    self.storeFuncs = function storeFunc(func)
+    {
+			self.funcs.push(func);
+    };
+    
+    self.runFuncs= function runFuncs(context){
+    	console.log('running all funcs');
+    	self.funcs.forEach(function(thisFunc) {
+      	thisFunc.apply(context,null);
+      });
+      
+    } 
+    return self;
+})();
+
+
+
+myModule.storeFuncs(function(){console.log('function1 called')});
+//looks wierd but function call actually returns a function ref
+myModule.storeFuncs(getFunction('aardvark'));
+
+myModule.runFuncs();
+
+function getFunction(someKey){
+	
+  //note returns a function ref  not a called function
+	return callBack;
+	function callBack(){
+  	console.log('function2 called key ' + someKey);
+  }
+
+}
